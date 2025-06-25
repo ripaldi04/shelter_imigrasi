@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use HasFactory, Notifiable;
+
+    // Gunakan tabel dari schema "acl"
+    protected $table = 'acl.users';
+
+    // UUID sebagai primary key
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    // Kolom yang bisa diisi secara massal
+    protected $fillable = [
+        'id',
+        'username',
+        'password',
+        'is_active',
+        'is_change_password',
+        'is_admin',
+        'description',
+        'created_id',
+        'created_at',
+        'updated_id',
+        'updated_at',
+    ];
+
+    // Kolom yang disembunyikan saat serialisasi
+    protected $hidden = [
+        'password',
+    ];
+
+    // Cast kolom sesuai kebutuhan
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
+    // Boleh login ke Filament hanya jika is_admin = '1'
+    public function canAccessFilament(): bool
+    {
+        return $this->is_admin === '1'; // untuk bpchar(1)
+    }
+}
