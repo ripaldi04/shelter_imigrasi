@@ -1,6 +1,8 @@
 <?php
 namespace App\Models\Employee;
 
+use App\Models\Instance\Organizations;
+use App\Models\Instance\Positions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
@@ -63,12 +65,12 @@ class Personnel extends Model
 
     public function position()
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsTo(Positions::class);
     }
 
     public function organization()
     {
-        return $this->belongsTo(Organization::class);
+        return $this->belongsTo(Organizations::class);
     }
 
     public function employmentType()
