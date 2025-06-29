@@ -37,23 +37,23 @@ class PersonnelResource extends Resource
                 TextInput::make('employee_number')->required()->maxLength(18),
                 TextInput::make('old_employee_number')->maxLength(18),
                 TextInput::make('office_email')->email()->maxLength(100),
-                Textarea::make('assignment_description'),
+                Textarea::make('assignment_letter_path'),
 
                 TextInput::make('unor_id')->maxLength(50),
 
-                Select::make('employment_status_id')
-                    ->relationship('employmentStatus', 'name') // pastikan relasinya ada
+                Select::make('employment_id')
+                    ->relationship('employment', 'employment') // pastikan relasinya ada
                     ->required(),
 
                 Select::make('assortment_id')
-                    ->relationship('assortment', 'name')
+                    ->relationship('assortment', 'assortment')
                     ->required(),
 
                 Select::make('position_id')
-                    ->relationship('position', 'name'),
+                    ->relationship('position', 'position'),
 
                 Select::make('organization_id')
-                    ->relationship('organization', 'name'),
+                    ->relationship('organization', 'organization'),
 
                 Select::make('employment_type_id')
                     ->relationship('employmentType', 'name'),
@@ -62,9 +62,6 @@ class PersonnelResource extends Resource
                 Toggle::make('is_external')->label('External'),
 
                 Textarea::make('notes'),
-
-                Select::make('verificator_id')
-                    ->relationship('verificator', 'name'),
             ]);
     }
 
@@ -74,9 +71,10 @@ class PersonnelResource extends Resource
             ->columns([
                 TextColumn::make('employee_number')->searchable(),
                 TextColumn::make('office_email'),
-                TextColumn::make('employmentStatus.name')->label('Status'),
-                TextColumn::make('assortment.name')->label('Assortment'),
-                TextColumn::make('position.name')->label('Position'),
+                TextColumn::make('employment.employment')->label('Status'),
+                TextColumn::make('assortment.assortment')->label('Assortment'),
+                TextColumn::make('position.position')->label('Position'),
+                TextColumn::make('organization.organization')->label('organizations'),
                 BooleanColumn::make('is_verified'),
             ])
             ->filters([
@@ -84,6 +82,7 @@ class PersonnelResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

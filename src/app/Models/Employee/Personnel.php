@@ -3,6 +3,9 @@ namespace App\Models\Employee;
 
 use App\Models\Instance\Organizations;
 use App\Models\Instance\Positions;
+use App\Models\Public\Employment;
+use App\Models\Public\EmploymentType;
+use App\Models\Employee\Assortments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
@@ -21,9 +24,9 @@ class Personnel extends Model
         'employee_number',
         'old_employee_number',
         'office_email',
-        'assignment_description',
+        'assignment_letter_path',
         'unor_id',
-        'employment_status_id',
+        'employment_id',
         'assortment_id',
         'position_id',
         'organization_id',
@@ -33,7 +36,7 @@ class Personnel extends Model
         'notes',
         'verificator_id',
         'verified_at',
-        'responbility_letter_path',
+        'responbility_letter_path', 
         'created_id',
         'created_at',
         'updated_id',
@@ -53,34 +56,29 @@ class Personnel extends Model
         'verified_at' => 'datetime',
     ];
 
-    public function employmentStatus()
+    public function employment()
     {
-        return $this->belongsTo(EmploymentStatus::class);
+        return $this->belongsTo(Employment::class, 'employment_id');
     }
 
     public function assortment()
     {
-        return $this->belongsTo(Assortments::class);
+        return $this->belongsTo(Assortments::class, 'assortment_id');
     }
 
     public function position()
     {
-        return $this->belongsTo(Positions::class);
+        return $this->belongsTo(Positions::class, 'position_id');
     }
 
     public function organization()
     {
-        return $this->belongsTo(Organizations::class);
+        return $this->belongsTo(Organizations::class, 'organization_id');
     }
 
     public function employmentType()
     {
-        return $this->belongsTo(EmploymentType::class);
-    }
-
-    public function verificator()
-    {
-        return $this->belongsTo(User::class, 'verificator_id');
+        return $this->belongsTo(EmploymentType::class, 'employment_type_id');
     }
 
 }

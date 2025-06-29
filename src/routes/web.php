@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Authentication\RegisterController;
+
 
 
 Route::get('/', function () {
@@ -32,4 +34,8 @@ Route::post('/logout', function (Request $request) {
 Route::get('/captcha', function () {
     return captcha_img(); // akan otomatis mengembalikan image base64
 })->name('captcha');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 
