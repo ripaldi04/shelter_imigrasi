@@ -8,7 +8,7 @@ use App\Http\Controllers\Authentication\RegisterController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');;
 Route::get('/pengumuman', function () {
     return view('announcement');
 });

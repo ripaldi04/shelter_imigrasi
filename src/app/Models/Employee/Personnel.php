@@ -21,6 +21,7 @@ class Personnel extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'employee_number',
         'old_employee_number',
         'office_email',
@@ -36,7 +37,7 @@ class Personnel extends Model
         'notes',
         'verificator_id',
         'verified_at',
-        'responbility_letter_path', 
+        'responbility_letter_path',
         'created_id',
         'created_at',
         'updated_id',
