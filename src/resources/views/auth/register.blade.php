@@ -51,6 +51,12 @@
                     @endforeach
                 </select>
             </div>
+            {{-- Employee Number --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Pegawai</label>
+                <input type="text" name="employee_number" value="{{ old('employee_number') }}"
+                    class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
 
             {{-- Assortment --}}
             <div>
