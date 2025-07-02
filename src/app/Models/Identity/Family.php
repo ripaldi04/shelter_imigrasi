@@ -2,7 +2,12 @@
 
 namespace App\Models\Identity;
 
+use App\Models\Public\Degree;
+use App\Models\Public\FieldOfStudies;
+use App\Models\Public\MaritalStatus;
+use App\Models\Public\Occupation;
 use App\Models\Public\Relationship;
+use App\Models\Public\Religion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
@@ -65,7 +70,7 @@ class Family extends Model
 
     public function fieldOfStudy()
     {
-        return $this->belongsTo(FieldOfStudy::class, 'field_of_study');
+        return $this->belongsTo(FieldOfStudies::class, 'field_of_study');
     }
 
     public function religion()
