@@ -89,4 +89,26 @@ class FamilyController extends Controller
             return back()->with('error', 'Gagal menyimpan: ' . $e->getMessage());
         }
     }
+    public function update2(Request $request, $id)
+    {
+        $family = Family::findOrFail($id);
+
+        $data = $request->all();
+        $family->update($data);
+
+        return redirect()->back()->with('success', 'Data keluarga berhasil diperbarui.');
+    }
+    public function destroy($id)
+    {
+        try {
+            $family = Family::findOrFail($id);
+            $family->delete();
+
+            return redirect()->back()->with('success', 'Data keluarga berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
+        }
+    }
+
+
 }

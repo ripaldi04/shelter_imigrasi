@@ -46,6 +46,10 @@ Route::get('/posisi', function () {
 });
 Route::get('/dashboard/family/edit', [FamilyController::class, 'edit'])->name('family.edit');
 Route::post('/dashboard/family/update', [FamilyController::class, 'update'])->name('family.update');
+Route::put('/dashboard/family/update/{id}', [FamilyController::class, 'update2'])->name('family.update2');
+Route::delete('/dashboard/family/delete/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
+
+
 
 
 Route::get('/profile', function () {
