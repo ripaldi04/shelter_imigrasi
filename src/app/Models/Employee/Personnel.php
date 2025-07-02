@@ -1,6 +1,7 @@
 <?php
 namespace App\Models\Employee;
 
+use App\Models\Acl\User;
 use App\Models\Instance\Organizations;
 use App\Models\Instance\Positions;
 use App\Models\Public\Employment;
@@ -81,5 +82,10 @@ class Personnel extends Model
     {
         return $this->belongsTo(EmploymentType::class, 'employment_type_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
 
 }

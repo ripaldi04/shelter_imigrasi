@@ -2,6 +2,8 @@
 
 namespace App\Models\Acl;
 
+use App\Models\Employee\Personnel;
+use App\Models\Identity\Personal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -69,6 +71,15 @@ class User extends Authenticatable
     {
         return (string) ($this->name ?? $this->email ?? 'Filament Admin');
     }
+    public function personnel()
+    {
+        return $this->hasOne(Personnel::class, 'user_id', 'id');
+    }
+    public function personal()
+    {
+        return $this->hasOne(Personal::class, 'acl_user_id', 'id');
+    }
+
 
 
 }

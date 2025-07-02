@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Identity\BiodataController;
+use App\Http\Controllers\Identity\PersonalController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Authentication\RegisterController;
@@ -8,12 +10,41 @@ use App\Http\Controllers\Authentication\RegisterController;
 
 Route::get('/', function () {
     return view('home');
-})->name('home');;
+})->name('home');
+;
 Route::get('/pengumuman', function () {
     return view('announcement');
 });
+// Route::get('/personal', function () {
+//     return view('identity');
+// });
+Route::get('/assortment', function () {
+    return view('assortment');
+});
+Route::get('/assignment-track-records', function () {
+    return view('assignment_track_records');
+});
+Route::get('/dashboard/biodata/edit', [BiodataController::class, 'edit'])->name('biodata');
+Route::post('/dashboard/biodata/update', [BiodataController::class, 'update']);
+
+
+Route::get('/placement-track-records', function () {
+    return view('placement_track_records');
+});
+Route::get('/reward-track-records', function () {
+    return view('reward_track_records');
+});
+Route::get('/occupation', function () {
+    return view('occupation');
+});
+Route::get('/biodata', function () {
+    return view('biodata');
+});
 Route::get('/posisi', function () {
     return view('position');
+});
+Route::get('/family', function () {
+    return view('family');
 });
 Route::get('/profile', function () {
     return view('dashboard');

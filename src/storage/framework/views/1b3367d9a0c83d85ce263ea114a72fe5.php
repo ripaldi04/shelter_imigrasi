@@ -31,7 +31,7 @@
                         class="inline-block px-5 py-2 bg-[#08243c] from-blue-500 to-blue-700 text-white font-semibold rounded-full shadow hover:from-blue-600 hover:to-blue-800 transition duration-200">
                         Login
                     </a>
-                    <a href="/"
+                    <a href="/register"
                         class="inline-block px-5 py-2 bg-white text-[#08243c] border border-[#08243c] font-semibold rounded-full hover:bg-blue-50 transition duration-200">
                         Register
                     </a>
