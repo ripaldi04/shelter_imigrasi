@@ -39,7 +39,7 @@ class Family extends Model
         'relationship_id',
         'marital_status_id',
         'degree_id',
-        'field_of_study',
+        'field_of_study_id',
         'religion_id',
         'occupation_id',
         'created_id',

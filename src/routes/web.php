@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Identity\FamilyController;
 use App\Http\Controllers\Identity\BiodataController;
 use App\Http\Controllers\Identity\PersonalController;
 use Illuminate\Support\Facades\Route;
@@ -43,9 +44,10 @@ Route::get('/biodata', function () {
 Route::get('/posisi', function () {
     return view('position');
 });
-Route::get('/family', function () {
-    return view('family');
-});
+Route::get('/dashboard/family/edit', [FamilyController::class, 'edit'])->name('family.edit');
+Route::post('/dashboard/family/update', [FamilyController::class, 'update'])->name('family.update');
+
+
 Route::get('/profile', function () {
     return view('dashboard');
 })->name('profile');
