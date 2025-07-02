@@ -177,7 +177,7 @@
                         <input type="file" name="family_card" class="w-full border rounded px-3 py-2">
                     </div>
                     <div>
-                        <label class="text-sm">Kartu Keluarga</label>
+                        <label class="text-sm">Kartu Relationship</label>
                         <input type="file" name="relationship_card" class="w-full border rounded px-3 py-2">
                     </div>
                     <div>
@@ -346,14 +346,14 @@
             document.getElementById('edit_description').value = family.description || '';
             document.getElementById('edit_wedding_date').value = family.wedding_date || '';
 
-            // Untuk select option
-            document.querySelector('[name="relationship_id"]').value = family.relationship_id || '';
-            document.querySelector('[name="degree_id"]').value = family.degree_id || '';
-            document.querySelector('[name="field_of_study_id"]').value = family.field_of_study_id || '';
-            document.querySelector('[name="religion_id"]').value = family.religion_id || '';
-            document.querySelector('[name="occupation_id"]').value = family.occupation_id || '';
-            document.querySelector('[name="marital_status_id"]').value = family.marital_status_id || '';
-            document.querySelector('[name="gender"]').value = family.gender;
+            // Fix: Gunakan ID field di form edit
+            document.getElementById('edit_relationship_id').value = family.relationship_id || '';
+            document.getElementById('edit_degree_id').value = family.degree_id || '';
+            document.getElementById('edit_field_of_study_id').value = family.field_of_study_id || '';
+            document.getElementById('edit_religion_id').value = family.religion_id || '';
+            document.getElementById('edit_occupation_id').value = family.occupation_id || '';
+            document.getElementById('edit_marital_status_id').value = family.marital_status_id || '';
+            document.getElementById('edit_gender').value = family.gender;
 
             // Update form action
             document.getElementById('editForm').action = `/dashboard/family/update/${family.id}`;

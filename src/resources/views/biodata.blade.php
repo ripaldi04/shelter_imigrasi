@@ -10,7 +10,7 @@
     @endphp
     <div class="bg-white p-6 rounded shadow-md max-w-7xl mx-auto">
         <h2 class="text-lg font-semibold mb-4">Biodata</h2>
-        <form action="{{ url('/dashboard/personal/update') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/dashboard/biodata/update') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <input type="hidden" name="acl_user_id" value="{{ $user->id }}">
@@ -20,7 +20,7 @@
                 <!-- Foto -->
                 <div class="md:col-span-1">
                     <div class="flex flex-col items-center">
-                        <img src="{{ $user->personal->photo_path ? asset('storage/' . $user->personal->photo_path) : asset('/images/default-avatar.png') }}"
+                        <img src="{{ optional($user->personal)->photo_path ? asset('storage/' . $user->personal->photo_path) : asset('/images/default-avatar.png') }}"
                             class="w-32 h-40 object-cover border rounded" />
                         <p class="text-xs mt-2 text-center text-gray-500">Maksimal 2MB. JPG, PNG, JPEG</p>
                         <input type="file" name="photo_path"

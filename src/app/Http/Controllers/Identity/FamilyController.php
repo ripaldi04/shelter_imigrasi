@@ -31,6 +31,19 @@ class FamilyController extends Controller
             'maritals' => MaritalStatus::all(),
         ]);
     }
+    private function deleteAndReplaceFile(Request $request, string $field, string $folder, ?string $oldPath): ?string
+    {
+        if ($request->hasFile($field)) {
+            if ($oldPath && Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            return $request->file($field)->store($folder, 'public');
+        }
+
+        return $oldPath;
+    }
+
 
 
     public function update(Request $request)
@@ -93,11 +106,72 @@ class FamilyController extends Controller
     {
         $family = Family::findOrFail($id);
 
-        $data = $request->all();
-        $family->update($data);
+        $validated = $request->validate([
+            'identity_number' => 'nullable|string|max:16',
+            'full_name' => 'required|string|max:255',
+            'gender' => 'required|in:1,0',
+            'place_of_birth' => 'nullable|string|max:100',
+            'date_of_birth' => 'nullable|date',
+            'description' => 'nullable|string|max:150',
+            'wedding_date' => 'nullable|date',
+            'blood_type' => 'nullable|string|max:2',
+            'relationship_id' => 'required|uuid',
+            'marital_status_id' => 'nullable|uuid',
+            'degree_id' => 'nullable|uuid',
+            'field_of_study_id' => 'nullable|uuid',
+            'religion_id' => 'nullable|uuid',
+            'occupation_id' => 'nullable|uuid',
+            'identity_card' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'family_card' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'relationship_card' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'birth_certificate' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        // Hindari mengisi field file dari fill()
+        $nonFileData = collect($validated)->except([
+            'identity_card',
+            'family_card',
+            'relationship_card',
+            'birth_certificate'
+        ]);
+
+        $family->fill($nonFileData->toArray());
+
+        // File upload dengan penghapusan file lama
+        $family->identity_card = $this->deleteAndReplaceFile(
+            $request,
+            'identity_card',
+            'uploads/identity_card_family',
+            $family->identity_card
+        );
+
+        $family->family_card = $this->deleteAndReplaceFile(
+            $request,
+            'family_card',
+            'uploads/family_card',
+            $family->family_card
+        );
+
+        $family->relationship_card = $this->deleteAndReplaceFile(
+            $request,
+            'relationship_card',
+            'uploads/relationship_card',
+            $family->relationship_card
+        );
+
+        $family->birth_certificate = $this->deleteAndReplaceFile(
+            $request,
+            'birth_certificate',
+            'uploads/birth_certificate',
+            $family->birth_certificate
+        );
+
+        $family->save();
 
         return redirect()->back()->with('success', 'Data keluarga berhasil diperbarui.');
     }
+
+
     public function destroy($id)
     {
         try {

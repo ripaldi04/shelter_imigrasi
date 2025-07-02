@@ -9,6 +9,7 @@ use App\Http\Controllers\Authentication\RegisterController;
 
 
 
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -25,9 +26,6 @@ Route::get('/assortment', function () {
 Route::get('/assignment-track-records', function () {
     return view('assignment_track_records');
 });
-Route::get('/dashboard/biodata/edit', [BiodataController::class, 'edit'])->name('biodata');
-Route::post('/dashboard/biodata/update', [BiodataController::class, 'update']);
-
 
 Route::get('/placement-track-records', function () {
     return view('placement_track_records');
@@ -38,23 +36,23 @@ Route::get('/reward-track-records', function () {
 Route::get('/occupation', function () {
     return view('occupation');
 });
-Route::get('/biodata', function () {
-    return view('biodata');
-});
 Route::get('/posisi', function () {
     return view('position');
 });
-Route::get('/dashboard/family/edit', [FamilyController::class, 'edit'])->name('family.edit');
-Route::post('/dashboard/family/update', [FamilyController::class, 'update'])->name('family.update');
-Route::put('/dashboard/family/update/{id}', [FamilyController::class, 'update2'])->name('family.update2');
-Route::delete('/dashboard/family/delete/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
+Route::middleware(['auth'])->group(function () {
 
+    Route::get('/dashboard/biodata/edit', [BiodataController::class, 'edit'])->name('biodata');
+    Route::post('/dashboard/biodata/update', [BiodataController::class, 'update']);
 
+    Route::get('/dashboard/family/edit', [FamilyController::class, 'edit'])->name('family.edit');
+    Route::post('/dashboard/family/update', [FamilyController::class, 'update'])->name('family.update');
+    Route::put('/dashboard/family/update/{id}', [FamilyController::class, 'update2'])->name('family.update2');
+    Route::delete('/dashboard/family/delete/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
 
-
-Route::get('/profile', function () {
-    return view('dashboard');
-})->name('profile');
+    Route::get('/profile', function () {
+        return view('dashboard');
+    })->name('profile');
+});
 
 Route::post('/logout', function (Request $request) {
     Auth::logout();

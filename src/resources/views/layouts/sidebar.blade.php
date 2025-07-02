@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('family') }}"
+                            <a href="{{ url('/dashboard/family/edit') }}"
                                 class="block px-2 py-1 rounded hover:bg-gray-100 {{ $uri2 == 'family' ? 'text-blue-600 font-semibold' : '' }}">
                                 Keluarga
                             </a>

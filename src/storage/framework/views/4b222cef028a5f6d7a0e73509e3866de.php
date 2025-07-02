@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo e(url('family')); ?>"
+                            <a href="<?php echo e(url('/dashboard/family/edit')); ?>"
                                 class="block px-2 py-1 rounded hover:bg-gray-100 <?php echo e($uri2 == 'family' ? 'text-blue-600 font-semibold' : ''); ?>">
                                 Keluarga
                             </a>
