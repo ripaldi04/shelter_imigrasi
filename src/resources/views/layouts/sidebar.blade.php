@@ -53,7 +53,7 @@
                     </button>
                     <ul x-show="open" class="mt-1 pl-6 space-y-1 text-gray-700">
                         <li>
-                            <a href="{{ url('assortment') }}"
+                            <a href="{{ url('/dashboard/assortment/edit') }}"
                                 class="block px-2 py-1 rounded hover:bg-gray-100 {{ $uri2 == 'golongan' ? 'text-blue-600 font-semibold' : '' }}">
                                 Pangkat/Golongan
                             </a>

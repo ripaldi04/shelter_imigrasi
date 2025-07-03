@@ -47,9 +47,11 @@ class AssortmentTrackRecordsResource extends Resource
                     ->acceptedFileTypes(['application/pdf', 'image/*'])
                     ->maxSize(2048),
 
-                Select::make('employee_personnel_id')->relationship('employee', 'full_name')->searchable()->required(),
-                Select::make('employment_id')->relationship('employment', 'name')->required(),
-                Select::make('assortment_id')->relationship('assortment', 'name')->required(),
+                Select::make('employee_personnel_id')
+                    ->relationship('personnel', 'employee_number')
+                    ->required(),
+                Select::make('employment_id')->relationship('employment', 'employment')->required(),
+                Select::make('assortment_id')->relationship('assortment', 'assortment')->required(),
                 Select::make('promotion_type_id')->relationship('promotionType', 'name')->required(),
             ]);
     }
@@ -62,8 +64,8 @@ class AssortmentTrackRecordsResource extends Resource
                 TextColumn::make('work_period_month')->label('Bulan'),
                 TextColumn::make('work_period_year')->label('Tahun'),
                 TextColumn::make('sk_number')->label('Nomor SK'),
-                TextColumn::make('employment.name')->label('Status Kepegawaian'),
-                TextColumn::make('assortment.name')->label('Pangkat/Golongan'),
+                TextColumn::make('employment.employment')->label('Status Kepegawaian'),
+                TextColumn::make('assortment.assortment')->label('Pangkat/Golongan'),
                 TextColumn::make('promotionType.name')->label('Jenis Kenaikan'),
             ])
             ->filters([

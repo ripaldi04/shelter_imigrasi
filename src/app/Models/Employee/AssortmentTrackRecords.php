@@ -55,7 +55,7 @@ class AssortmentTrackRecords extends Model
     }
 
     // Relasi (jika ada)
-    public function employee()
+    public function personnel()
     {
         return $this->belongsTo(Personnel::class, 'employee_personnel_id');
     }

@@ -115,7 +115,7 @@
                     class="text-gray-500 hover:text-gray-700">&times;</button>
             </div>
 
-            <form action="/assortment/store" method="POST" enctype="multipart/form-data">
+            <form action="/dashboard/assortment/store" method="POST" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="md:col-span-2">
@@ -288,7 +288,7 @@
         function openEditModal(data) {
             document.getElementById('editModal').classList.remove('hidden');
 
-            document.getElementById('editForm').action = `/assortment/update/${data.id}`;
+            document.getElementById('editForm').action = `/dashboard/assortment/update/${data.id}`;
             document.getElementById('edit_id').value = data.id;
             document.getElementById('edit_tmt_date').value = data.tmt_date;
             document.getElementById('edit_work_period_month').value = data.work_period_month;

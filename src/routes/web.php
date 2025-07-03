@@ -51,10 +51,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/dashboard/family/update/{id}', [FamilyController::class, 'update2'])->name('family.update2');
     Route::delete('/dashboard/family/delete/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
 
-    Route::post('/assortment/store', [AssortmentTrackRecordsController::class, 'store'])->name('assortment.store');
-    Route::get('/assortment/edit', [AssortmentTrackRecordsController::class, 'index']);
-    Route::put('/assortment/update/{id}', [AssortmentTrackRecordsController::class, 'update']);
-    Route::delete('/assortment/delete/{id}', [AssortmentTrackRecordsController::class, 'destroy'])->name('assortment.delete');
+    Route::post('/dashboard/assortment/store', [AssortmentTrackRecordsController::class, 'store'])->name('assortment.store');
+    Route::get('/dashboard/assortment/edit', [AssortmentTrackRecordsController::class, 'index']);
+    Route::put('/dashboard/assortment/update/{id}', [AssortmentTrackRecordsController::class, 'update']);
+    Route::delete('/dashboard/assortment/delete/{id}', [AssortmentTrackRecordsController::class, 'destroy'])->name('assortment.delete');
 
 
 

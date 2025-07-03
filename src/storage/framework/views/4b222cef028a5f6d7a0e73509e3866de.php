@@ -53,7 +53,7 @@
                     </button>
                     <ul x-show="open" class="mt-1 pl-6 space-y-1 text-gray-700">
                         <li>
-                            <a href="<?php echo e(url('assortment')); ?>"
+                            <a href="<?php echo e(url('/dashboard/assortment/edit')); ?>"
                                 class="block px-2 py-1 rounded hover:bg-gray-100 <?php echo e($uri2 == 'golongan' ? 'text-blue-600 font-semibold' : ''); ?>">
                                 Pangkat/Golongan
                             </a>

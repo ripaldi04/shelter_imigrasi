@@ -117,6 +117,12 @@ class AssortmentTrackRecordsController extends Controller
             $path = $record->document_path;
 
             if ($request->hasFile('document_path')) {
+                // Hapus file lama jika ada
+                if ($path && \Storage::disk('public')->exists($path)) {
+                    \Storage::disk('public')->delete($path);
+                }
+
+                // Upload file baru
                 $file = $request->file('document_path');
                 $path = $file->store('uploads/rank_documents', 'public');
             }
