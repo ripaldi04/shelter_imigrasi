@@ -41,12 +41,12 @@
                 @forelse ($families as $family)
                     <tr>
                         <td class="px-3 py-2">{{ $family->full_name }}</td>
-                        <td class="px-3 py-2">{{ $family->relationship->name ?? '-' }}</td>
+                        <td class="px-3 py-2">{{ $family->relationship->relationship ?? '-' }}</td>
                         <td class="px-3 py-2">{{ $family->identity_number }}</td>
                         <td class="px-3 py-2">{{ $family->gender == '1' ? 'Laki-laki' : 'Perempuan' }}</td>
                         <td class="px-3 py-2">{{ $family->place_of_birth }}, {{ $family->date_of_birth }}</td>
-                        <td class="px-3 py-2">{{ $family->degree->name ?? '-' }}</td>
-                        <td class="px-3 py-2">{{ $family->occupation->name ?? '-' }}</td>
+                        <td class="px-3 py-2">{{ $family->degree->degree ?? '-' }}</td>
+                        <td class="px-3 py-2">{{ $family->occupation->occupation ?? '-' }}</td>
                         <td class="px-3 py-2 space-x-1">
                             <!-- Edit Button -->
                             <!-- Gunakan JSON agar bisa diparsing di JS -->

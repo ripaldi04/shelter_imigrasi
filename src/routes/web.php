@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Employee\AssortmentController;
+use App\Http\Controllers\Employee\AssortmentTrackRecordsController;
 use App\Http\Controllers\Identity\FamilyController;
 use App\Http\Controllers\Identity\BiodataController;
 use App\Http\Controllers\Identity\PersonalController;
@@ -20,9 +22,9 @@ Route::get('/pengumuman', function () {
 // Route::get('/personal', function () {
 //     return view('identity');
 // });
-Route::get('/assortment', function () {
-    return view('assortment');
-});
+// Route::get('/assortment', function () {
+//     return view('assortment');
+// });
 Route::get('/assignment-track-records', function () {
     return view('assignment_track_records');
 });
@@ -48,6 +50,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard/family/update', [FamilyController::class, 'update'])->name('family.update');
     Route::put('/dashboard/family/update/{id}', [FamilyController::class, 'update2'])->name('family.update2');
     Route::delete('/dashboard/family/delete/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
+
+    Route::post('/assortment/store', [AssortmentTrackRecordsController::class, 'store'])->name('assortment.store');
+    Route::get('/assortment/edit', [AssortmentTrackRecordsController::class, 'index']);
+    Route::put('/assortment/update/{id}', [AssortmentTrackRecordsController::class, 'update']);
+    Route::delete('/assortment/delete/{id}', [AssortmentTrackRecordsController::class, 'destroy'])->name('assortment.delete');
+
+
+
 
     Route::get('/profile', function () {
         return view('dashboard');
