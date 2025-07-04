@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo e(url('occupation' . session('login_personnel_id'))); ?>"
+                            <a href="<?php echo e(url('/dashboard/position/edit')); ?>"
                                 class="block px-2 py-1 rounded hover:bg-gray-100 <?php echo e($uri2 == 'jabatan' ? 'text-blue-600 font-semibold' : ''); ?>">
                                 Jabatan
                             </a>

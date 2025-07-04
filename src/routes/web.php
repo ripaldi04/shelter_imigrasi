@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Employee\AssortmentController;
 use App\Http\Controllers\Employee\AssortmentTrackRecordsController;
+use App\Http\Controllers\Employee\PositionTrackRecordsController;
 use App\Http\Controllers\Identity\FamilyController;
 use App\Http\Controllers\Identity\BiodataController;
 use App\Http\Controllers\Identity\PersonalController;
@@ -35,9 +36,9 @@ Route::get('/placement-track-records', function () {
 Route::get('/reward-track-records', function () {
     return view('reward_track_records');
 });
-Route::get('/occupation', function () {
-    return view('occupation');
-});
+// Route::get('/occupation', function () {
+//     return view('position_track_records');
+// });
 Route::get('/posisi', function () {
     return view('position');
 });
@@ -55,6 +56,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/assortment/edit', [AssortmentTrackRecordsController::class, 'index']);
     Route::put('/dashboard/assortment/update/{id}', [AssortmentTrackRecordsController::class, 'update']);
     Route::delete('/dashboard/assortment/delete/{id}', [AssortmentTrackRecordsController::class, 'destroy'])->name('assortment.delete');
+
+    Route::post('/dashboard/position/store', [PositionTrackRecordsController::class, 'store'])->name('position.store');
+    Route::get('/dashboard/position/edit', [PositionTrackRecordsController::class, 'index'])->name('position.index');
+    Route::put('/dashboard/position/update/{id}', [PositionTrackRecordsController::class, 'update'])->name('position.update');
+    Route::delete('/dashboard/position/delete/{id}', [PositionTrackRecordsController::class, 'destroy'])->name('position.destroy');
+
 
 
 

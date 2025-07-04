@@ -71,9 +71,6 @@ class AssortmentTrackRecordsController extends Controller
 
         // Simpan ke DB
         try {
-            Log::info('User Login Data', ['user' => auth()->user()]);
-            Log::info('employee_personnel_id', ['value' => optional(auth()->user())->employee_personnel_id]);
-
             $model = AssortmentTrackRecords::create([
                 'id' => Str::uuid(),
                 'tmt_date' => $request->input('tmt_date'),

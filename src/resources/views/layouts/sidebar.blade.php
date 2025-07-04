@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('occupation' . session('login_personnel_id')) }}"
+                            <a href="{{ url('/dashboard/position/edit') }}"
                                 class="block px-2 py-1 rounded hover:bg-gray-100 {{ $uri2 == 'jabatan' ? 'text-blue-600 font-semibold' : '' }}">
                                 Jabatan
                             </a>
