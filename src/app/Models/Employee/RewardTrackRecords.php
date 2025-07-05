@@ -2,35 +2,37 @@
 
 namespace App\Models\Employee;
 
-use App\Models\Public\Employment;
-use App\Models\Public\PromotionType;
+use App\Models\Public\AwardType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Storage;
 
-class AssortmentTrackRecords extends Model
+class RewardTrackRecords extends Model
 {
     use HasFactory;
 
-    protected $table = 'employee.assortment_track_records';
+    protected $table = 'employee.reward_track_records'; // ganti sesuai nama tabel sebenarnya
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'id';
 
-
     protected $fillable = [
         'id',
-        'tmt_date',
-        'work_period_month',
-        'work_period_year',
+        'employee_personnel_id',
+        'reward_name',
+        'award_type_id',
+        'institution',
+        'year',
+        'sk_giver',
         'sk_number',
+        'sk_date',
         'description',
         'document_path',
-        'employee_personnel_id',
-        'employment_id',
-        'assortment_id',
-        'promotion_type_id',
+        'created_id',
+        'created_at',
+        'updated_id',
+        'updated_at',
     ];
     protected static function booted(): void
     {
@@ -55,28 +57,17 @@ class AssortmentTrackRecords extends Model
     }
 
     protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'sequence_no' => 'integer',
+        'is_verified' => 'boolean',
+        'verified_at' => 'datetime',
     ];
-    // Relasi (jika ada)
+
     public function personnel()
     {
         return $this->belongsTo(Personnel::class, 'employee_personnel_id');
     }
 
-    public function employment()
+    public function awardType()
     {
-        return $this->belongsTo(Employment::class);
-    }
-
-    public function assortment()
-    {
-        return $this->belongsTo(Assortments::class);
-    }
-
-    public function promotionType()
-    {
-        return $this->belongsTo(PromotionType::class);
+        return $this->belongsTo(AwardType::class, 'award_type_id');
     }
 }

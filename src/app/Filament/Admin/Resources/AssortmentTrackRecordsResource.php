@@ -40,12 +40,13 @@ class AssortmentTrackRecordsResource extends Resource
                 TextInput::make('description')->label('Keterangan')->maxLength(255),
 
                 FileUpload::make('document_path')
-                    ->label('Dokumen SK')
-                    ->disk('public')
-                    ->directory('rank_documents')
+                    ->label('Dokumen / Gambar')
+                    ->disk('public') // storage/app/public
+                    ->directory('uploads/rank_documents') // tanpa "storage/" di depan!
                     ->preserveFilenames()
-                    ->acceptedFileTypes(['application/pdf', 'image/*'])
-                    ->maxSize(2048),
+                    ->openable()
+                    ->downloadable()
+                    ->visibility('public'),
 
                 Select::make('employee_personnel_id')
                     ->relationship('personnel', 'employee_number')
